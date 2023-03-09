@@ -5,9 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 import function_main as fm
+
 data= pd.read_csv('US_Retail_Sales_1992_2014.csv')
-
-
 data['Kind of business'] = data['Kind of business'].astype('string')
 data['NAICS Code'] = data['NAICS Code'].astype('string')
 data.iloc[:, 2:] = data.iloc[:, 2:].astype('string')
@@ -24,22 +23,23 @@ pd.set_option('display.max_rows', None)
 print(code_kind_df)
 
 
-code_kind = fm.filter_input(code_kind_df)
-
-data_draw = pd.DataFrame(data.iloc[0, 2:]).reset_index()
+code, kind = fm.filter_input(code_kind_df)
+print(code, kind)
+data_draw = data[data['NAICS Code']== code].iloc[:, 2:].T.reset_index()
 data_draw.columns=['Year','Revenue']
+
+
 data_draw.iloc[:, 0] = data_draw.iloc[:, 0].astype("float64")
 
 
 print(data_draw)
 
 
-fm.draw_scatter_graph(data_draw, code_kind)
+fm.draw_scatter_graph(data_draw, code, kind)
 
-# year = (data_draw['Year']).values.reshape(-1,1)
 
-year = np.array((data_draw['Year'])).reshape(-1,1)
-revenue = np.array((data_draw['Revenue'])).reshape(-1,1)
+year = data_draw[['Year']]
+revenue = data_draw[['Revenue']]
 
 
 line_fitter = LinearRegression()
@@ -52,8 +52,6 @@ predict_years = 0
 while predict_years <= 2014:
     predict_years = int(input("You want to predict until: "))
 
-m = line_fitter.coef_
-b = line_fitter.intercept_ 
 new_years = np.array(range(2015, predict_years+1)).reshape(-1,1)
 revenue_predict = line_fitter.predict(new_years)
 plt.plot(new_years, revenue_predict)
