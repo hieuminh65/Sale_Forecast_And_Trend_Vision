@@ -12,6 +12,7 @@ All values in this report are in millions of dollars.
 
 1. Put mains.py, function_main.py, and US_Retail_Sales_1992_2014.csv in the same folder.
 2. Run mains.py file
-    python3 mains.py
+
+"shell"    python3 mains.py
     
 3. When prompted, enter a year (after 2014) to predict and view the prediction results.
