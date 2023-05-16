@@ -4,9 +4,9 @@ This project implements a Linear Regression model to forecast revenue and sales 
 
 ## Data
 
-⋅⋅* The data is provided by the U.S. Census Bureau.
-⋅⋅* This dataset provides information on retail and food services sales for the period of 1992 to 2021. 
-⋅⋅* All values in this report are in millions of dollars.
+* The data is provided by the U.S. Census Bureau.
+* This dataset provides information on retail and food services sales for the period of 1992 to 2021. 
+* All values in this report are in millions of dollars.
 
 ## Usage
 
